@@ -6,7 +6,7 @@ volatile unsigned long sampleCounter = 0;          // used to determine pulse ti
 volatile unsigned long lastBeatTime = 0;           // used to find IBI
 volatile int P =512;                      // used to find peak in pulse wave, seeded
 volatile int T = 512;                     // used to find trough in pulse wave, seeded
-volatile int thresh = 900;                // used to find instant moment of heart beat, seeded
+volatile int thresh = 525;                // used to find instant moment of heart beat, seeded
 volatile int amp = 100;                   // used to hold amplitude of pulse waveform, seeded
 volatile boolean firstBeat = true;        // used to seed rate array so we startup with reasonable BPM
 volatile boolean secondBeat = false;      // used to seed rate array so we startup with reasonable BPM
@@ -16,7 +16,7 @@ void interruptSetup(){
   // Initializes Timer2 to throw an interrupt every 2mS.
     TCCR1A = 0x00;
     TCCR1B = 0x0C; 
-    OCR1A = 0x7C; 
+    OCR1A = 0x3E; 
     TIMSK1 = 0x02; 
 //  TCCR2A = 0x02;     // DISABLE PWM ON DIGITAL PINS 3 AND 11, AND GO INTO CTC MODE
 //  TCCR2B = 0x06;     // DON'T FORCE COMPARE, 256 PRESCALER 
@@ -96,7 +96,7 @@ ISR(TIMER1_COMPA_vect){                         // triggered when Timer2 counts 
   }
 
   if (N > 2500){                           // if 2.5 seconds go by without a beat
-    thresh = 900;                          // set thresh default
+    thresh = 525;                          // set thresh default
     P = 512;                               // set P default
     T = 512;                               // set T default
     lastBeatTime = sampleCounter;          // bring the lastBeatTime up to date        
