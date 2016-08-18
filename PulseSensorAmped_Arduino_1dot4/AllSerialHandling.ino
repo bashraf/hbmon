@@ -40,7 +40,7 @@ void sendDataToSerial(char symbol, int data ){
 //  Code to Make the Serial Monitor Visualizer Work
 void arduinoSerialMonitorVisual(char symbol, int data ){    
   const int sensorMin = 0;      // sensor minimum, discovered through experiment
-const int sensorMax = 1024;    // sensor maximum, discovered through experiment
+const int sensorMax = 1023;    // sensor maximum, discovered through experiment
 
   int sensorReading = data;
   // map the sensor range to a range of 12 options:

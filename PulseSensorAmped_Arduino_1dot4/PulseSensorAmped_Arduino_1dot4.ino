@@ -14,7 +14,7 @@ https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/
 */
 
 //  Variables
-int pulsePin = 0;                 // Pulse Sensor purple wire connected to analog pin 0
+int pulsePin = 10;                 // Pulse Sensor purple wire connected to analog pin 0
 int blinkPin = 13;                // pin to blink led at each beat
 int fadePin = 5;                  // pin to do fancy classy fading blink at each beat
 int fadeRate = 0;                 // used to fade LED on with PWM on fadePin
@@ -37,14 +37,14 @@ void setup(){
   interruptSetup();                 // sets up to read Pulse Sensor signal every 2mS 
    // IF YOU ARE POWERING The Pulse Sensor AT VOLTAGE LESS THAN THE BOARD VOLTAGE, 
    // UN-COMMENT THE NEXT LINE AND APPLY THAT VOLTAGE TO THE A-REF PIN
-//   analogReference(EXTERNAL);   
+   analogReference(EXTERNAL);   
 }
 
 
 //  Where the Magic Happens
 void loop(){
   
-    serialOutput() ;       
+    serialOutput() ;     
     
   if (QS == true){     // A Heartbeat Was Found
                        // BPM and IBI have been Determined
